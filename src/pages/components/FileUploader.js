@@ -73,6 +73,7 @@ export default function FileUploader() {
           <input
             type="file"
             accept="image/*"
+            capture="environment" // Allows using the camera
             onChange={handleFileChange}
             className="block w-full text-sm cursor-pointer mb-4"
           />
