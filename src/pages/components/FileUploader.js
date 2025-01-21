@@ -74,7 +74,7 @@ export default function FileUploader() {
             type="file"
             accept="image/*"
             onChange={handleFileChange}
-            className="block w-full text-sm border rounded-lg border-gray-300 p-2 cursor-pointer focus:outline-none mb-4"
+            className="block w-full text-sm cursor-pointer mb-4"
           />
           <button
             onClick={handleUpload}
@@ -93,7 +93,7 @@ export default function FileUploader() {
       {response && (
         <div className="mt-8 text-left">
           <h3 className="text-lg font-semibold mb-2">Parsed Ticket Data:</h3>
-          <pre className="p-4 bg-gray-100 rounded-lg text-sm">
+          <pre className="p-4 border rounded-lg text-sm">
             {JSON.stringify(response, null, 2)}
           </pre>
         </div>
