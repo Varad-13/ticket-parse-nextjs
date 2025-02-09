@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
-const rzrpyid = process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID
+const rzrpyid = process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID;
 // Example partial list of Mumbai Local Stations
 const mumbaiStations = [
   // Western Line
@@ -146,25 +146,17 @@ export default function BookTicketPage() {
           contact: userId
         },
         handler: (response) => {
-          // Payment success
           setMessage(`Payment Success! Payment ID: ${response.razorpay_payment_id}`);
-
-          // 5) Store ticket data in localStorage
-          const ticketObject = {
-            phoneNumber: userId,
-            fromStation,
-            toStation,
-            journeyDate,
-            classValue,
-            fareValue,
-            adultChildValue,
-            validity,
-            paymentId: response.razorpay_payment_id
-          };
-          localStorage.setItem('myTicket', JSON.stringify(ticketObject));
-
-          // 6) Redirect to show-ticket page
-          router.push('/show-ticket');
+          
+          // Redirect to success page with payment details
+          router.push({
+            pathname: '/success',
+            query: {
+              razorpay_payment_id: response.razorpay_payment_id,
+              razorpay_order_id: order_id,
+              razorpay_signature: response.razorpay_signature
+            }
+          });
         },
         theme: { color: '#0080ff' }
       };
@@ -183,7 +175,7 @@ export default function BookTicketPage() {
         <meta name="description" content="Book Mumbai local tickets with ease" />
       </Head>
 
-      <main className="bg-gray-100 min-h-screen py-8 px-4">
+      <main className="bg-gray-300 min-h-screen py-8 px-4">
         <div className="max-w-lg mx-auto my-10 bg-white shadow-md rounded-lg p-6 text-black">
           <h1 className="text-2xl font-bold mb-4 text-center">
             Mumbai Local Ticket Booking
