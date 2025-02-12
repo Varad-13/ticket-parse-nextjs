@@ -8,7 +8,7 @@ const stationCoordinates = {
   'Marine Lines': { lat: 18.9430, lng: 72.8253 },
   'Charni Road': { lat: 18.9520, lng: 72.8230 },
   'Grant Road': { lat: 18.9633, lng: 72.8142 },
-  'Mumbai Central': { lat: 18.9712, lng: 72.8191 },
+  'Mumbai Central': { lat: 18.9689, lng: 72.8183 },
   'Dadar': { lat: 19.0178, lng: 72.8478 },
   'Bandra': { lat: 19.0542, lng: 72.8386 },
   'Andheri': { lat: 19.1197, lng: 72.8464 },
