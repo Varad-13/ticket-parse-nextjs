@@ -131,12 +131,12 @@ const TicketValidation = ({ ticketData }) => {
   return (
     <div className="mt-4 space-y-2">
       {validityWarning && (
-        <div className="p-3 bg-yellow-100 border border-yellow-400 rounded-md text-yellow-700">
+        <div className="p-3 bg-red-100 border border-red-400 rounded-md text-red-700">
           <span className="font-semibold">⚠️ Validity Warning:</span> {validityWarning}
         </div>
       )}
       {locationWarning && (
-        <div className="p-3 bg-yellow-100 border border-yellow-400 rounded-md text-yellow-700">
+        <div className="p-3 bg-orange-100 border border-orange-400 rounded-md text-orange-700">
           <span className="font-semibold">⚠️ Location Warning:</span> {locationWarning}
         </div>
       )}
@@ -366,78 +366,78 @@ export default function FileUploader() {
       setIssuingChallan(false);
     }
   };
+return (
+  <div className="max-w-md mx-auto text-center p-6 bg-white shadow-lg rounded-lg">
+    <h1 className="text-2xl font-bold text-blue-600 mb-4">📤 Upload Ticket Image</h1>
+    
+    {checkingServer ? (
+      <p className="text-gray-500">Checking server status...</p>
+    ) : serverReady ? (
+      <>
+        <input
+          type="file"
+          accept="image/*"
+          onChange={handleFileChange}
+          className="block w-full text-sm cursor-pointer mb-4 border rounded-lg p-2 border-gray-300"
+        />
+        <button
+          onClick={handleUpload}
+          disabled={loading}
+          className={`w-full px-4 py-2 text-white font-semibold rounded-lg transition ${
+            loading ? "bg-gray-400 cursor-not-allowed" : "bg-blue-600 hover:bg-blue-700"
+          }`}
+        >
+          {loading ? "Uploading..." : "📤 Upload"}
+        </button>
+      </>
+    ) : (
+      <p className="text-red-500">❌ Server is not available. Please try again later.</p>
+    )}
 
-  return (
-    <div className="max-w-md mx-auto text-center">
-      <h1 className="text-2xl font-bold mb-4">Upload Ticket Image</h1>
-      {checkingServer ? (
-        <p className="text-gray-500">Checking server status...</p>
-      ) : serverReady ? (
-        <>
-          <input
-            type="file"
-            accept="image/*"
-            onChange={handleFileChange}
-            className="block w-full text-sm cursor-pointer mb-4"
-          />
+    {error && <p className="text-red-500 mt-4">{error}</p>}
+
+    {response && (
+      <div className="mt-8 text-left">
+        <h3 className="text-lg font-semibold text-blue-600 mb-2">📄 Ticket Data:</h3>
+        <pre className="p-4 border-2 border-dashed border-gray-400 shadow-md bg-gray-50 rounded-lg text-sm mb-4 overflow-x-auto">
+          {JSON.stringify(response, null, 2)}
+        </pre>
+
+        <TicketValidation ticketData={response} />
+
+        <div className="text-center mt-4">
           <button
-            onClick={handleUpload}
-            disabled={loading}
-            className={`px-4 py-2 text-white font-semibold rounded ${
-              loading ? "bg-gray-400 cursor-not-allowed" : "bg-blue-500 hover:bg-blue-600"
+            onClick={openChallanModal}
+            disabled={issuingChallan}
+            className={`w-full px-6 py-2 text-white font-semibold rounded-lg transition ${
+              issuingChallan 
+                ? "bg-red-400 cursor-not-allowed" 
+                : "bg-red-600 hover:bg-red-700"
             }`}
           >
-            {loading ? "Uploading..." : "Upload"}
+            {issuingChallan ? "⏳ Issuing..." : "🚔 Issue Challan"}
           </button>
-        </>
-      ) : (
-        <p className="text-red-500">Server is not available. Please try again later.</p>
-      )}
-      
-      {error && <p className="text-red-500 mt-4">{error}</p>}
-      
-      {response && (
-        <div className="mt-8 text-left">
-          <h3 className="text-lg font-semibold mb-2">Ticket Data:</h3>
-          <pre className="p-4 border-2 border-dashed border-gray-400 shadow-md bg-gray-100 rounded-lg text-sm mb-4">
-            {JSON.stringify(response, null, 2)}
-          </pre>
-          
-          <TicketValidation ticketData={response} />
-          
-          <div className="text-center mt-4">
-            <button
-              onClick={openChallanModal}
-              disabled={issuingChallan}
-              className={`px-6 py-2 text-white font-semibold rounded-lg ${
-                issuingChallan 
-                  ? "bg-red-400 cursor-not-allowed" 
-                  : "bg-red-600 hover:bg-red-700"
-              }`}
-            >
-              Issue Challan
-            </button>
-            
-            {challanMessage && (
-              <div className={`mt-4 p-3 rounded-md text-sm ${
-                challanMessage.includes("Failed") 
-                  ? "bg-red-100 text-red-700" 
-                  : "bg-green-100 text-green-700"
-              }`}>
-                {challanMessage}
-              </div>
-            )}
-          </div>
-        </div>
-      )}
 
-      <ChallanModal
-        show={showModal}
-        onClose={() => setShowModal(false)}
-        onSubmit={handleChallanSubmit}
-        initialData={challanDetails}
-        isIssuing={issuingChallan}
-      />
-    </div>
-  );
+          {challanMessage && (
+            <div className={`mt-4 p-3 rounded-md text-sm ${
+              challanMessage.includes("Failed") 
+                ? "bg-red-100 text-red-700" 
+                : "bg-green-100 text-green-700"
+            }`}>
+              {challanMessage}
+            </div>
+          )}
+        </div>
+      </div>
+    )}
+
+    <ChallanModal
+      show={showModal}
+      onClose={() => setShowModal(false)}
+      onSubmit={handleChallanSubmit}
+      initialData={challanDetails}
+      isIssuing={issuingChallan}
+    />
+  </div>
+);
 }

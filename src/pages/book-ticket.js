@@ -174,43 +174,43 @@ export default function BookTicketPage() {
         <title>Mumbai Local Ticket Booking</title>
         <meta name="description" content="Book Mumbai local tickets with ease" />
       </Head>
-
+  
       <main className="bg-gray-300 min-h-screen py-8 px-4">
-        <div className="max-w-lg mx-auto my-10 bg-white shadow-md rounded-lg p-6 text-black">
-          <h1 className="text-2xl font-bold mb-4 text-center">
-            Mumbai Local Ticket Booking
+        <div className="max-w-lg mx-auto my-10 bg-white shadow-lg rounded-lg p-6 text-black">
+          <h1 className="text-2xl font-bold text-center text-blue-700 mb-4">
+            🚆 Mumbai Local Ticket Booking
           </h1>
-
+  
           {message && (
             <div className="p-3 mb-4 text-sm rounded bg-blue-100 text-blue-800">
               {message}
             </div>
           )}
-
+  
           <form onSubmit={handleSubmit} className="space-y-4">
-            {/* Phone Number (User ID) */}
+            {/* Phone Number */}
             <div>
               <label htmlFor="userId" className="block text-sm font-medium mb-1">
-                Phone Number
+                📱 Phone Number
               </label>
               <input
                 type="text"
                 id="userId"
-                className="w-full border border-gray-300 px-3 py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full border border-gray-300 px-3 py-2 rounded focus:ring-2 focus:ring-blue-500"
                 value={userId}
                 onChange={(e) => setUserId(e.target.value)}
                 required
               />
             </div>
-
+  
             {/* From Station */}
             <div>
               <label htmlFor="fromStation" className="block text-sm font-medium mb-1">
-                From Station
+                🚉 From Station
               </label>
               <select
                 id="fromStation"
-                className="w-full border border-gray-300 px-3 py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full border border-gray-300 px-3 py-2 rounded focus:ring-2 focus:ring-blue-500"
                 value={fromStation}
                 onChange={(e) => setFromStation(e.target.value)}
                 required
@@ -223,15 +223,15 @@ export default function BookTicketPage() {
                 ))}
               </select>
             </div>
-
+  
             {/* To Station */}
             <div>
               <label htmlFor="toStation" className="block text-sm font-medium mb-1">
-                To Station
+                🚉 To Station
               </label>
               <select
                 id="toStation"
-                className="w-full border border-gray-300 px-3 py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full border border-gray-300 px-3 py-2 rounded focus:ring-2 focus:ring-blue-500"
                 value={toStation}
                 onChange={(e) => setToStation(e.target.value)}
                 required
@@ -244,30 +244,30 @@ export default function BookTicketPage() {
                 ))}
               </select>
             </div>
-
+  
             {/* Journey Date */}
             <div>
               <label htmlFor="journeyDate" className="block text-sm font-medium mb-1">
-                Journey Date
+                📅 Journey Date
               </label>
               <input
                 type="date"
                 id="journeyDate"
-                className="w-full border border-gray-300 px-3 py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full border border-gray-300 px-3 py-2 rounded focus:ring-2 focus:ring-blue-500"
                 value={journeyDate}
                 onChange={(e) => setJourneyDate(e.target.value)}
                 required
               />
             </div>
-
+  
             {/* Class */}
             <div>
               <label htmlFor="classValue" className="block text-sm font-medium mb-1">
-                Class
+                🏷️ Class
               </label>
               <select
                 id="classValue"
-                className="w-full border border-gray-300 px-3 py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full border border-gray-300 px-3 py-2 rounded focus:ring-2 focus:ring-blue-500"
                 value={classValue}
                 onChange={(e) => setClassValue(e.target.value)}
               >
@@ -275,15 +275,15 @@ export default function BookTicketPage() {
                 <option value="First Class">First Class</option>
               </select>
             </div>
-
+  
             {/* Passenger Type */}
             <div>
               <label htmlFor="adultChildValue" className="block text-sm font-medium mb-1">
-                Passenger Type
+                👤 Passenger Type
               </label>
               <select
                 id="adultChildValue"
-                className="w-full border border-gray-300 px-3 py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full border border-gray-300 px-3 py-2 rounded focus:ring-2 focus:ring-blue-500"
                 value={adultChildValue}
                 onChange={(e) => setAdultChildValue(e.target.value)}
               >
@@ -291,15 +291,15 @@ export default function BookTicketPage() {
                 <option value="Child">Child</option>
               </select>
             </div>
-
+  
             {/* Ticket Validity */}
             <div>
               <label htmlFor="validity" className="block text-sm font-medium mb-1">
-                Ticket Validity
+                ⏳ Ticket Validity
               </label>
               <select
                 id="validity"
-                className="w-full border border-gray-300 px-3 py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full border border-gray-300 px-3 py-2 rounded focus:ring-2 focus:ring-blue-500"
                 value={validity}
                 onChange={(e) => setValidity(e.target.value)}
               >
@@ -307,25 +307,20 @@ export default function BookTicketPage() {
                 <option value="Return">Return</option>
               </select>
             </div>
-
+  
             {/* Hidden Fare Field */}
-            <input
-              type="hidden"
-              id="fareValue"
-              value={fareValue}
-              readOnly
-            />
-
+            <input type="hidden" id="fareValue" value={fareValue} readOnly />
+  
             {/* Submit Button */}
             <button
               type="submit"
-              className="w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 focus:ring-2 focus:ring-blue-500"
             >
-              Book and Pay
+              💳 Book and Pay
             </button>
           </form>
         </div>
       </main>
     </>
-  );
+  );  
 }
