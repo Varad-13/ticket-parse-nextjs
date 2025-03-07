@@ -5,11 +5,6 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: "Method Not Allowed" });
   }
 
-  const session = await getSession({ req });
-  if (!session) {
-    return res.status(401).json({ error: "Unauthorized" });
-  }
-
   try {
     // Check payment status from private environment variable
     const paymentStatus = process.env.PAYMENT_STATUS || "PENDING";
